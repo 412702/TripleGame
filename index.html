@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>三方演化博弈</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="./css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="./css/_all-skins.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <!-- 加载界面，为加载过程准备 -->
+    <div id="load-data-request">
+        <div class="row" style="margin: 0 auto;width: 70%;">
+            <div class="col-md-12">
+                <div class="box box-danger box-solid">
+                    <div class="box-header">
+                        <h3 class="box-title">Loading state</h3>
+                    </div>
+                    <div class="box-body">
+                        正在获取加载...
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- Loading (remove the following to stop the loading)-->
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="../" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>E</b>GT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Evolutionary</b>GT</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only"></span>
+                </a>
+
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="./img/avatar.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>三方博弈</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> 参数解释</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <div class="sidebar-form">
+                    <div class="input-group">
+                        <!-- <input type="text" name="q" class="form-control" placeholder="看什么, 输参数呀..." disabled> -->
+                        <input type="text" class="form-control" placeholder="点击右侧图标开始..." disabled>
+                        <span class="input-group-btn">
+                            <button id="begin_game" class="btn btn-flat">
+                                <i class="fa fa-fw fa-transgender-alt"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header"> 输入运算参数： </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <span>
+                                <input id="param_A1" type="text" class="form-control" placeholder="A1" value="7">
+                            </span>
+                            <span>
+                                <input id="param_A2" type="text" class="form-control" placeholder="A2" value="5">
+                            </span>
+                            <span>
+                                <input id="param_B1" type="text" class="form-control" placeholder="B1" value="7">
+                            </span>
+                            <span>
+                                <input id="param_B2" type="text" class="form-control" placeholder="B2" value="5">
+                            </span>
+                            <span>
+                                <input id="param_C1" type="text" class="form-control" placeholder="C1" value="6">
+                            </span>
+                            <span>
+                                <input id="param_C2" type="text" class="form-control" placeholder="C2" value="2">
+                            </span>
+                            <span>
+                                <input id="param_D1" type="text" class="form-control" placeholder="D1" value="7">
+                            </span>
+                            <span>
+                                <input id="param_D2" type="text" class="form-control" placeholder="D2" value="4">
+                            </span>
+                            <span>
+                                <input id="param_e" type="text" class="form-control" placeholder="e" value="3">
+                            </span>
+                            <span>
+                                <input id="param_E" type="text" class="form-control" placeholder="E" value="5">
+                            </span>
+                            <span>
+                                <input id="param_f" type="text" class="form-control" placeholder="f" value="4">
+                            </span>
+                            <span>
+                                <input id="param_F" type="text" class="form-control" placeholder="F" value="6">
+                            </span>
+                            <span>
+                                <input id="param_g" type="text" class="form-control" placeholder="g" value="5">
+                            </span>
+                            <span>
+                                <input id="param_G" type="text" class="form-control" placeholder="G" value="6">
+                            </span>
+                            <span>
+                                <input id="param_T" type="text" class="form-control" placeholder="T" value="1">
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="header"> 输入演化参数: </li>
+                    <li>
+                        <span>
+                            <span>
+                                <input id="param_group" type="text" class="form-control" placeholder="群体大小"  value="300">
+                            </span>
+                            <span>
+                                <input id="param_generate" type="text" class="form-control" placeholder="演化代数" value="1000">
+                            </span>
+                            <span>
+                                <input id="param_round" type="text" class="form-control" placeholder="每代对抗次数" value="1">
+                            </span>
+                            <span>
+                                <input id="param_death" type="text" class="form-control" placeholder="淘汰率" value="0.01">
+                            </span>
+
+                            <span>
+                                <input id="param_variation" type="text" class="form-control" placeholder="变异率" value="0.1">
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <!-- Main content -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Line chart -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <i class="fa fa-bar-chart-o"></i>
+
+                                <h3 class="box-title">政府策略演化</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div id="gover" style="height: 300px;"></div>
+                            </div>
+                            <!-- /.box-body-->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <!-- 第二个 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Line chart -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <i class="fa fa-bar-chart-o"></i>
+
+                                <h3 class="box-title">企业策略演化</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div id="hospital" style="height: 300px;"></div>
+                            </div>
+                            <!-- /.box-body-->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <!-- 第三个 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Line chart -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <i class="fa fa-bar-chart-o"></i>
+
+                                <h3 class="box-title">病人策略演化</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div id="patient" style="height: 300px;"></div>
+                            </div>
+                            <!-- /.box-body-->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- 引用库 -->
+    <!-- jQuery 3 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="./js/lib/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="./js/lib/adminlte.min.js"></script>
+    <!-- FLOT CHARTS -->
+    <script src="./js/lib/jquery.flot.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="./js/lib/jquery.flot.resize.js"></script>
+    <!-- <script src="./js/jquery.js"></script> -->
+    <!-- 三方演化模块 -->
+    <script src="./js/tripleGame.js"></script>
+    <!-- 自定义全局变量 -->
+    <script src="./js/globalVariable.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
+<!-- 
+/**
+ * Author: Zhang Chunli、Zhang Yi、Zhang Zhong
+ * From: Dalian University of Technology
+ * Data: 2022-01-11
+ * Encoding: uft-8
+*/
+ -->
